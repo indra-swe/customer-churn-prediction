@@ -1,0 +1,18 @@
+# Local virtual environments
+venv/
+.env
+
+# Python caching and internal checkpoints
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Data storage (Never commit raw datasets to GitHub)
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+# IDE configuration files
+.vscode/
+.DS_Store
