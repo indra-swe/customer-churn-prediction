@@ -40,3 +40,27 @@ customer-churn-prediction/
 ├── main.py             # Core pipeline automation orchestrator
 ├── requirements.txt    # Pinned dependency manifests
 └── README.md
+
+## 🔬 Advanced Data Handling & Engineering
+1. Data Leakage PreventionStandard analytics workflows frequently apply scaling or encoding across an entire dataset globally, which leaks test distribution statistics into training computations. This architecture resolves this by running a strict stratified train/test split prior to any data transformation, ensuring the model generalizes reliably to pristine unseen data.
+
+2. Immutability via ColumnTransformersNumeric features (tenure, MonthlyCharges, TotalCharges) undergo median imputation and standardization via StandardScaler. Categorical string objects are encoded into numerical vectors utilizing OneHotEncoder(drop='first', handle_unknown='ignore'). This prevents multi-collinearity and keeps the pipeline from crashing when encountering unexpected data variations in production.
+
+3. Native Imbalance CorrectionCustomer churn datasets are naturally skewed toward loyal users (Class Imbalance). Our orchestrator calculates an explicit target scaling factor ($2.77$) directly from the training label distributions:
+
+$$\text{Scale Pos Weight} = \frac{\text{Total Negative Class Count}}{\text{Total Positive Class Count}}$$
+
+This factor is dynamically injected into the objective functions of our gradient-boosting classifiers to heavily penalize missing a true churn event.
+
+## 📊 Performance Metrics (Test Partition Evaluation)
+Upon running the end-to-end pipeline against completely untouched evaluation subsets, the system yielded the following enterprise classification parameters:Target Class ProfilePrecisionRecall (Sensitivity)F1-ScoreEvaluation SupportLoyal Accounts (0)0.910.730.811035Churn Risk Segment (1)0.520.800.63374Global Accuracy0.751409Statistical ROC-AUC Score: 0.8441
+
+## 🚀 Local Installation & Execution
+Clone the repository and step inside the workspace root:Bashgit clone [https://github.com/indra-swe/customer-churn-prediction.git](https://github.com/indra-swe/customer-churn-prediction.git)
+
+## Initialize and activate a localized virtual environment: 
+cd customer-churn-prediction
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+Install the pinned production dependencies: pip install -r requirements.txt
+Trigger the end-to-end execution pipeline: python main.py
