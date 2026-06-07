@@ -27,8 +27,6 @@ def evaluate_production_model(y_true, y_pred, y_prob):
     plt.title("Production Model Confusion Matrix")
     plt.ylabel("Actual Customer State")
     plt.xlabel("Predicted Customer State")
-    
-    # Save chart automatically to outputs
     plt.savefig("outputs/production_confusion_matrix.png", bbox_inches='tight')
     plt.close()
     print(" Visual confusion matrix matrix plot exported to: outputs/production_confusion_matrix.png")

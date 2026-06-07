@@ -7,6 +7,7 @@ from src.data_ingestion import ingest_and_stratify_data
 from src.preprocessing import get_preprocessor
 from src.model_training import get_ensemble_pipeline
 from src.evaluation import evaluate_production_model
+from src.feature_importance import plot_ensemble_feature_importance
 
 def run_pipeline():
     RAW_PATH = r"D:\Data Analytics Projects\customer-churn-prediction\data\raw\churn_data.csv"
@@ -54,15 +55,18 @@ def run_pipeline():
     
     model_engine = get_ensemble_pipeline(scale_pos_weight=imbalance_ratio)
     model_engine.fit(X_train_processed, y_train)
-    print("[✓] Model ensemble pipeline successfully trained.")
+    print(" Model ensemble pipeline successfully trained.")
     
     # 4. PRODUCTION EVALUATION LAYER
     # Generate predictions on the completely unseen testing set
-    test_predictions = model_engine.predict(X_test_processed)
+    OPTIMIZED_THRESHOLD = 0.65
+    test_predictions = (test_probabilities >= OPTIMIZED_THRESHOLD).astype(int)    
     test_probabilities = model_engine.predict_proba(X_test_processed)[:, 1]
     
     # Run the comprehensive evaluation report
     evaluate_production_model(y_test, test_predictions, test_probabilities)
+    # Generate and export the feature importance visualization
+    plot_ensemble_feature_importance(model_engine, preprocessor, numerical_features, categorical_features)
 
 if __name__ == "__main__":
     run_pipeline()

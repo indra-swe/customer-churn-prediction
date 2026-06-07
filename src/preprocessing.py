@@ -27,4 +27,4 @@ def get_preprocessor(numerical_cols, categorical_cols):
     return preprocessor
 
 if __name__ == "__main__":
-    print("Preprocessing pipeline module compiled successfully.")
+    print(" Preprocessing pipeline module compiled successfully.")
