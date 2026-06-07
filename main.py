@@ -59,9 +59,10 @@ def run_pipeline():
     
     # 4. PRODUCTION EVALUATION LAYER
     # Generate predictions on the completely unseen testing set
+    test_probabilities = model_engine.predict_proba(X_test_processed)[:, 1]
+    
     OPTIMIZED_THRESHOLD = 0.65
     test_predictions = (test_probabilities >= OPTIMIZED_THRESHOLD).astype(int)    
-    test_probabilities = model_engine.predict_proba(X_test_processed)[:, 1]
     
     # Run the comprehensive evaluation report
     evaluate_production_model(y_test, test_predictions, test_probabilities)
