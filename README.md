@@ -40,6 +40,7 @@ customer-churn-prediction/
 ├── main.py             # Core pipeline automation orchestrator
 ├── requirements.txt    # Pinned dependency manifests
 └── README.md
+```
 
 ## 🔬 Advanced Data Handling & Engineering
 1. Data Leakage PreventionStandard analytics workflows frequently apply scaling or encoding across an entire dataset globally, which leaks test distribution statistics into training computations. This architecture resolves this by running a strict stratified train/test split prior to any data transformation, ensuring the model generalizes reliably to pristine unseen data.
@@ -58,9 +59,13 @@ Upon running the end-to-end pipeline against completely untouched evaluation sub
 ## 🚀 Local Installation & Execution
 Clone the repository and step inside the workspace root:Bashgit clone [https://github.com/indra-swe/customer-churn-prediction.git](https://github.com/indra-swe/customer-churn-prediction.git)
 
-## Initialize and activate a localized virtual environment: 
+- Initialize and activate a localized virtual environment:
 cd customer-churn-prediction
 python -m venv venv
 .\venv\Scripts\Activate.ps1
-Install the pinned production dependencies: pip install -r requirements.txt
-Trigger the end-to-end execution pipeline: python main.py
+
+- Install the pinned production dependencies: 
+pip install -r requirements.txt
+
+- Trigger the end-to-end execution pipeline: 
+python main.py
