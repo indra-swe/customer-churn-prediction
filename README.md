@@ -54,10 +54,11 @@ $$\text{Scale Pos Weight} = \frac{\text{Total Negative Class Count}}{\text{Total
 This factor is dynamically injected into the objective functions of our gradient-boosting classifiers to heavily penalize missing a true churn event.
 
 ## 📊 Performance Metrics (Test Partition Evaluation)
-Upon running the end-to-end pipeline against completely untouched evaluation subsets, the system yielded the following enterprise classification parameters:Target Class ProfilePrecisionRecall (Sensitivity)F1-ScoreEvaluation SupportLoyal Accounts (0)0.910.730.811035Churn Risk Segment (1)0.520.800.63374Global Accuracy0.751409Statistical ROC-AUC Score: 0.8441
+Upon running the end-to-end pipeline against completely untouched evaluation subsets, the system yielded the following enterprise classification parameters:Target Class ProfilePrecisionRecall (Sensitivity)F1-ScoreEvaluation SupportLoyal Accounts (0)0.910.730.811035 Churn Risk Segment (1)0.520.800.63374Global Accuracy0.751409Statistical ROC-AUC Score: 0.8441
 
 ## 🚀 Local Installation & Execution
-Clone the repository and step inside the workspace root:Bashgit clone [https://github.com/indra-swe/customer-churn-prediction.git](https://github.com/indra-swe/customer-churn-prediction.git)
+Clone the repository and step inside the workspace root:
+- Bashgit clone [https://github.com/indra-swe/customer-churn-prediction.git](https://github.com/indra-swe/customer-churn-prediction.git)
 
 - Initialize and activate a localized virtual environment:
 cd customer-churn-prediction
